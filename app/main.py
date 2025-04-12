@@ -10,12 +10,12 @@ class Validator(ABC):
     def __get__(self, instance: Optional[Any], owner: Type[Any]) -> int | str:
         return getattr(instance, self.protected_name)
 
-    def __set__(self, instance: Any, value: int | str) -> None:
+    def __set__(self, instance: Any, value: int) -> None:
         if self.validate(value):
             setattr(instance, self.protected_name, value)
 
     @abstractmethod
-    def validate(self, value: int | str) -> bool:
+    def validate(self, value: int) -> bool:
         pass
 
 
