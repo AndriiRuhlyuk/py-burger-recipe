@@ -11,8 +11,8 @@ class Validator(ABC):
         return getattr(instance, self.protected_name)
 
     def __set__(self, instance: Any, value: int) -> None:
-        if self.validate(value):
-            setattr(instance, self.protected_name, value)
+        self.validate(value)
+        setattr(instance, self.protected_name, value)
 
     @abstractmethod
     def validate(self, value: int) -> bool:
